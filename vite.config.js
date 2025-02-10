@@ -1,8 +1,14 @@
 import { defineConfig } from "vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [svelte()],
-  base: "/elsabinder.github.io/",
+  base: "./", // This is important for relative paths
+  build: {
+    rollupOptions: {
+      output: {
+        assetFileNames: "assets/[name].[ext]",
+      },
+    },
+  },
 });
