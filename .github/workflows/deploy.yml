@@ -21,11 +21,22 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Add .nojekyll file
-        run: touch dist/.nojekyll
+      - name: Create .nojekyll
+        run: |
+          touch dist/.nojekyll
+
+      - name: Create _headers file
+        run: |
+          echo "/*" > dist/_headers
+          echo "  Content-Type: application/javascript" >> dist/_headers
+
+      - name: Create CNAME
+        run: |
+          echo "elsabinder.xyz" > dist/CNAME
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           branch: gh-pages
           folder: dist
+          clean: true

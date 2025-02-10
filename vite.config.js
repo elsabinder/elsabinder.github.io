@@ -3,11 +3,15 @@ import { svelte } from "@sveltejs/vite-plugin-svelte";
 
 export default defineConfig({
   plugins: [svelte()],
-  base: "./", // This is important for relative paths
+  base: "", // Empty string for root domain deployment
   build: {
+    outDir: "dist",
+    assetsDir: "assets",
     rollupOptions: {
       output: {
-        assetFileNames: "assets/[name].[ext]",
+        entryFileNames: `assets/[name].js`,
+        chunkFileNames: `assets/[name].js`,
+        assetFileNames: `assets/[name].[ext]`,
       },
     },
   },
